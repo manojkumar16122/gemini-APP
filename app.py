@@ -3,10 +3,19 @@ import streamlit as st
 import google.generativeai as genai
 from PIL import Image
 import time
-# Configure the Gemini API using the environment variable
-api_key = os.getenv("GEMINI_API_KEY")
-if api_key is None:
-    st.error("API key is not found. Please configure the GEMINI_API_KEY secret.")
+import os
+import json
+import streamlit as st
+import google.generativeai as genai
+
+# Load the configuration file
+with open('config.json') as config_file:
+    config = json.load(config_file)
+
+api_key = config.get("gemini_api_key")
+
+if not api_key:
+    st.error("API key is not found. Please configure the GEMINI_API_KEY in your config.json file.")
 else:
     genai.configure(api_key=api_key)
 # Set up the generation config
