@@ -3,3 +3,4 @@ google-generativeai==0.1.0
 protobuf==3.20.3
 altair==4.2.2
 setuptools>=40.0.0
+Pillow==10.4.0
