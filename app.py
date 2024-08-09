@@ -2,8 +2,13 @@ import os
 import streamlit as st
 import google.generativeai as genai
 
-# Configure the Gemini API
-genai.configure(api_key="AIzaSyAqWpn4z2Z19OKHkH53HsIl78ZvKVhyZCI")
+
+# Configure the Gemini API using the environment variable
+api_key = os.getenv("GEMINI_API_KEY")
+if api_key is None:
+    st.error("API key is not found. Please configure the GEMINI_API_KEY secret.")
+else:
+    genai.configure(api_key=api_key)
 
 # Set up the generation config
 generation_config = {
@@ -19,7 +24,7 @@ if "chat_history" not in st.session_state:
     st.session_state.chat_history = [
         {
             "role": "user",
-            "parts": ["hello ram"],
+            "parts": ["ello ram"],
         },
         
         {
